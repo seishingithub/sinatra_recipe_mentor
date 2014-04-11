@@ -1,0 +1,27 @@
+<h2><%= recipe.name %></h2>
+<p><pre><%= recipe.instructions %></pre></p>
+<a href="/recipes/<%= recipe.id %>/edit">Edit</a>
+<table>
+  <tr>
+    <td>Qty</td>
+    <td>Name</td>
+    <td></td>
+  </tr>
+  <% recipe.ingredients.each do |ingredient| %>
+    <tr>
+      <td>
+        <%= ingredient.amount %>
+      </td>
+      <td>
+        <%= ingredient.name %>
+      </td>
+      <td><a href="/recipes/<%= recipe.id %>/ingredients/<%= ingredient.id %>">Delete</a></td>
+    </tr>
+  <% end %>
+</table>
+
+<form action="/recipes/<%= recipe.id %>/ingredients" method="post">
+  <label>Name<input type="text" name="ingredient[name]"></label>
+  <label>Qty<input type="text" name="ingredient[amount]"></label>
+  <input type="submit" value="Add">
+</form>
